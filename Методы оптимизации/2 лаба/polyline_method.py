@@ -15,11 +15,15 @@ e = 0.0001
 step = 0.001    # Расстояние между 2мя точками графика
 
 
-def J(u: float) -> float:
+def J(u: float) -> float:       # Исходная функция
     return alpha * math.sin(betta * u) - sigma * u
 
 
-def g(u: float, v: float, L: float) -> float:
+def J_(u: float) -> float:      # Производная
+    return alpha * betta * math.cos(betta * u) - sigma
+
+
+def g(u: float, v: float, L: float) -> float:       # Ломанная
     return J(v) - L * abs(u - v)
 
 
@@ -68,8 +72,9 @@ def _main() -> None:
 
         iter_ += 1
 
-    print(f"u* = {(u1)}\tJ* = {J((u1))}\t"f"Разница |J(u0) - J(u1)| = {abs(J(u0) - J(u1))}")
-    print(f"iterations: {iter_}")
+    print(f"u* = {(u1)}\tJ* = {J((u1))}\tJ'(u*) = {J_(u1)}\t")
+    print(f"Разница |J(u0) - J(u1)| = {abs(J(u0) - J(u1))}")
+    print(f"итераций: {iter_}")
 
     y = [J(u) for u in u]
 

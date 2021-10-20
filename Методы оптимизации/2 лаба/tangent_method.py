@@ -61,8 +61,9 @@ def _main() -> None:
 
         iter_ += 1
 
-    print(f"u* = {(u1)}\tJ* = {J((u1))}\t"f"Разница |J(u0) - J(u1)| = {abs(J(u0) - J(u1))}")
-    print(f"iterations: {iter_}")
+    print(f"u* = {(u1)}\tJ* = {J((u1))}\tJ'(u*) = {J_(u1)}\t")
+    print(f"Разница |J(u0) - J(u1)| = {abs(J(u0) - J(u1))}")
+    print(f"итераций: {iter_}")
 
     y = [J(u) for u in u]
 
