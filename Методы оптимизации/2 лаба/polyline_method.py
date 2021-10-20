@@ -49,15 +49,16 @@ def provide_min_p(p: List[float], u: List[float]) -> float:
 
 def _main() -> None:
     L = provide_L(m=10000)
+    print(f"L = {L} -> функция удовлетворяет условию Липшица")
 
-    u = list(np.arange(a, b, step))     # Все точки на отрезке [a, b], отличающиеся step
+    u = list(np.arange(a, b, step))     # Все точки на отрезке [a, b], отличающиеся на step
     u0 = uniform(a, b)                  # Выбираем случайную точку на отрезке [a, b]
 
     p1 = [g(u_, u0, L) for u_ in u]     # Строим ломанную в точке u0
     u1 = provide_min_p(p1, u)           # Находим точку минимума ломанной
 
     iter_ = 0
-    while abs(J(u0) - J(u1)) > e:
+    while abs(u1 - u0) > e:
         p2 = [g(u_, u1, L) for u_ in u]     # Строим вторую ломанную
         p2 = provide_max_g(p1, p2)          # Объединяем ломанные (по правилу максимума)
 
